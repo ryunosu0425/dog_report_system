@@ -2,6 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
+            <c:if test="${flush != null}">
+                <div id="flush_success">
+                    <c:out value="${flush}"></c:out>
+                </div>
+            </c:if>
+
         <h2>犬日記（仮）へようこそ</h2>
+        <c:choose>
+            <c:when test="${login_user != null}">
+                <a href="<c:url value='/users/edit?id=${login_user.id}' />">ID、パスワードを変更する</a>
+            </c:when>
+        </c:choose>
     </c:param>
 </c:import>
