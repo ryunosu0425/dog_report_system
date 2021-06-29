@@ -12,12 +12,10 @@
             <tbody>
                 <tr>
                     <th>ユーザー名</th>
-                    <th>ワンちゃん</th>
                 </tr>
                 <c:forEach var="user" items="${users}" varStatus="status">
                     <tr class="row${status.count % 2}">
                         <td><c:out value="${user.code}" /></td>
-                        <td><c:out value="${user.dog_name}" /></td>
                     </tr>
                 </c:forEach>
             </tbody>

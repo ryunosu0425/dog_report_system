@@ -10,10 +10,17 @@
     </head>
     <body>
         <div id="wrapper">
-            <div id="header">
-                <h1>犬日記(仮)</h1>
+        <div id="header">
+            <div id="header_menu">
+                <h1>
+                    <a href="<c:url value='/' />">犬日記（仮）</a>
+                </h1>
+                &nbsp;&nbsp;&nbsp; <a href="<c:url value='/dogs/index' />">ワンちゃん一覧</a>&nbsp;
+                <a href="<c:url value='/reports/index' />">日記を見る</a>&nbsp; <a
+                    href="<c:url value='/follows/index' />">フォロー一覧</a>&nbsp;
             </div>
-            <div id="content">
+        </div>
+        <div id="content">
                 ${param.content}
             </div>
             <div id="footer">

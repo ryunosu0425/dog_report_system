@@ -17,25 +17,13 @@ public class UserValidator {
             errors.add(code_error);
         }
 
-        String name_error = validateName(u.getDog_name());
-        if(!name_error.equals("")) {
-            errors.add(name_error);
-        }
 
         String password_error = validatePassword(u.getPassword(), passwordCheckFlag);
         if(!password_error.equals("")) {
             errors.add(password_error);
         }
 
-        String dog_type_error = validateType(u.getDog_type());
-        if(!dog_type_error.equals("")) {
-            errors.add(dog_type_error);
-        }
 
-        String age_error = validateAge(u.getAge());
-        if(!age_error.equals("")) {
-            errors.add(age_error);
-        }
 
         return errors;
 
@@ -60,21 +48,7 @@ public class UserValidator {
         return "";
     }
 
-    private static String validateName(String dog_name) {
-        if(dog_name == null || dog_name.equals("")) {
-            return "登録するワンちゃんの名前を入力してください。";
-        }
 
-        return "";
-    }
-
-    private static String validateType(String dog_type) {
-        if(dog_type == null || dog_type.equals("")) {
-            return "犬種を入力してください。";
-        }
-
-        return "";
-    }
 
     private static String validatePassword(String password, Boolean passwordCheckFlag) {
         if(passwordCheckFlag && (password == null || password.equals(""))) {
@@ -83,13 +57,6 @@ public class UserValidator {
         return "";
     }
 
-    private static String validateAge(String age) {
-        if(age == null || age.equals("")) {
-            return "ワンちゃん年齢を入力してください。";
-        }
-
-        return "";
-    }
 
 
 }
