@@ -4,6 +4,8 @@
     <c:param name="content">
         <h2>ID、パスワード変更ページ</h2>
         <p>（パスワードは変更時のみ入力して下さい）</p>
-        <c:import url="_form.jsp" />
+        <form method="POST" action="<c:url value='/users/update' />">
+            <c:import url="_form.jsp" />
+        </form>
     </c:param>
 </c:import>
