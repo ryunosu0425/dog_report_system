@@ -13,7 +13,7 @@
         <div id="header">
             <div id="header_menu">
                 <h1>
-                    <a href="<c:url value='/' />">犬日記（仮）</a>
+                    <a href="<c:url value='/' />">愛犬日記</a>
                 </h1>
                 &nbsp;&nbsp;&nbsp; <a href="<c:url value='/dogs/index' />">ワンちゃん一覧</a>&nbsp;
                 <a href="<c:url value='/reports/index' />">日記を見る</a>&nbsp;
@@ -27,7 +27,8 @@
                         </c:when>
                         <c:otherwise>
                             <c:out value="${sessionScope.login_user.code}" />&nbsp;さん&nbsp;&nbsp;&nbsp;
-                            <a href="<c:url value='/logout' />">ログアウト</a>
+                            <a href="<c:url value='/logout' />">ログアウト</a>&nbsp;
+                            <a href="<c:url value='/users/show' />">マイページ</a>
                         </c:otherwise>
                     </c:choose>
                 </div>

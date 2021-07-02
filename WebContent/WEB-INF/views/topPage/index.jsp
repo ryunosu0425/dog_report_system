@@ -8,11 +8,6 @@
                 </div>
             </c:if>
 
-        <h2>犬日記（仮）へようこそ</h2>
-        <c:choose>
-            <c:when test="${login_user != null}">
-                <a href="<c:url value='/users/edit?id=${login_user.id}' />">ID、パスワードを変更する</a>
-            </c:when>
-        </c:choose>
+        <h2>愛犬日記へようこそ</h2>
     </c:param>
 </c:import>
