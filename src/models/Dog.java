@@ -8,10 +8,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Table(name="dogs")
+@NamedQueries({
+    @NamedQuery(name = "getAllDogs",
+            query = "SELECT d FROM Dog AS d ORDER BY d.id DESC"),
+    @NamedQuery(name = "getDogsCount",
+            query = "SELECT COUNT(d) FROM Dog AS d"),
+    @NamedQuery(name = "getMyAllDogs",
+            query = "SELECT d FROM Dog AS d WHERE d.user = :user ORDER BY d.id DESC"),
+    @NamedQuery(name = "getMyDogsCount",
+            query = "SELECT COUNT(d) FROM Dog AS d WHERE d.user = :user")
+})
 
 @Entity
 public class Dog {
@@ -38,6 +51,10 @@ public class Dog {
 
     @Column(name = "created_at", nullable = false)
     private Timestamp created_at;
+
+    @Lob
+    @Column(name = "image", nullable = true)
+    private byte[] image;
 
     public Integer getId() {
         return id;
@@ -85,6 +102,22 @@ public class Dog {
 
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
 }

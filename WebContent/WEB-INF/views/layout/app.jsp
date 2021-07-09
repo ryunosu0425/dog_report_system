@@ -4,7 +4,7 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>犬日記（仮）</title>
+        <title>愛犬日記</title>
         <link rel="stylesheet" href="<c:url value='/css/reset.css' />">
         <link rel="stylesheet" href="<c:url value='/css/style.css' />">
     </head>

@@ -1,6 +1,7 @@
 package controllers.users;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Dog;
 import models.User;
 import utils.DBUtil;
 
@@ -33,11 +35,15 @@ public class UsersShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        User u = em.find(User.class, Integer.parseInt(request.getParameter("login_user")));
+        User u = (User)request.getSession().getAttribute("login_user");
+        List<Dog> dogs = em.createNamedQuery("getMyAllDogs", Dog.class)
+                            .setParameter("user", u)
+                            .getResultList();
 
         em.close();
 
         request.setAttribute("user", u);
+        request.setAttribute("dogs", dogs);
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/show.jsp");
         rd.forward(request, response);
