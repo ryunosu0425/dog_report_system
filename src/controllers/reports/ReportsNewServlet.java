@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import models.Dog;
 import models.Report;
+import models.ReportImage;
 import utils.DBUtil;
 
 /**
@@ -36,11 +37,13 @@ public class ReportsNewServlet extends HttpServlet {
 
         Dog d = em.find(Dog.class, Integer.parseInt(request.getParameter("id")));
         Report r = new Report();
+        ReportImage ri = new ReportImage();
 
         em.close();
 
-        request.setAttribute("dog", d);
+        request.getSession().setAttribute("dog", d);
         request.setAttribute("report", r);
+        request.setAttribute("reportImage", ri);
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/new.jsp");
         rd.forward(request, response);

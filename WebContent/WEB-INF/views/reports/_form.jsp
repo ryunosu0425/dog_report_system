@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script type="text/javascript" src="../js/report.js"></script>
 <c:if test="${errors != null}">
     <div id="flush_error">
         入力内容にエラーがあります。<br />
@@ -24,6 +25,14 @@
 <label for="content">内容</label><br />
 <textarea name="content" rows="10" cols="50">${report.content}</textarea>
 <br /><br />
+
+<label for="image">画像（２ファイル投稿出来ます）</label><br />
+<input type="file" id="image1" name="image" value="${reportImage.image}" accept="image/png, image/jpeg" onchange="func1()" />
+<br /><br />
+<input type="file" id="add1" name="image" value="${reportImage.image}" accept="image/png, image/jpeg" />
+<br /><br />
+
+
 
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit">投稿</button>

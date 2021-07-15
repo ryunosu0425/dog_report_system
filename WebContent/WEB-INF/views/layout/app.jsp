@@ -17,7 +17,6 @@
                 </h1>
                 &nbsp;&nbsp;&nbsp; <a href="<c:url value='/dogs/index' />">ワンちゃん一覧</a>&nbsp;
                 <a href="<c:url value='/reports/index' />">日記を見る</a>&nbsp;
-                <a href="<c:url value='/follows/index' />">フォロー一覧</a>&nbsp;
             </div>
                 <div id="user_name">
                     <c:choose>

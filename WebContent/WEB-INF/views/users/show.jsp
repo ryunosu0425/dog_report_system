@@ -12,37 +12,40 @@
         <h3>登録している愛犬一覧</h3>
         <c:choose>
             <c:when test="${dogs != null}">
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>名前</th>
-                            <th>犬種</th>
-                            <th>年齢</th>
-                            <th>性別</th>
-                            <th>登録日時</th>
-                            <th>操作</th>
-                        </tr>
-                        <c:forEach var="dog" items="${dogs}" varStatus="status">
-                            <tr class="row${status.count % 2}">
-                                <td><c:out value="${dog.dog_name}" /></td>
-                                <td><c:out value="${dog.dog_type}" /></td>
-                                <td><c:out value="${dog.age}" /></td>
-                                <td><c:out value="${dog.sex}" /></td>
-                                <td class="report_date"><fmt:formatDate
-                                        value='${dog.created_at}' pattern='yyyy-MM-dd' /></td>
-                                <td><a href="<c:url value='/dogs/destroy?id=${dog.id}' />">削除する</a><br />
-                                <a href="<c:url value='/reports/new?id=${dog.id}' />">日記を書く</a></td>
-
-                                <td><img src="${dog.image}"></td>
-
+                <c:forEach var="dog" items="${dogs}" varStatus="status">
+                <div class="dog">
+                    <img class="dog_image"
+                        src="${pageContext.request.contextPath}/dogs/getImage?id=${dog.id}">
+                        <table class="dog_int">
+                            <tr>
+                                <th>名前 </th><td><c:out value="${dog.dog_name}" /></td>
                             </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
+                            <tr>
+                                <th>犬種 </th><td><c:out value="${dog.dog_type}" /></td>
+                            </tr>
+                            <tr>
+                                <th>年齢 </th><td><c:out value="${dog.age}" /></td>
+                            </tr>
+                            <tr>
+                                <th>性別 </th><td><c:out value="${dog.sex}" /></td>
+                            </tr>
+                            <tr>
+                                <th>登録日時</th><td><fmt:formatDate
+                                            value='${dog.created_at}' pattern='yyyy-MM-dd' /></td>
+                            </tr>
+                            <tr>
+                                <td colspan = 2><a href="<c:url value='/dogs/edit?id=${dog.id}' />">編集する</a><br />
+                                <a href="<c:url value='/reports/new?id=${dog.id}' />">日記を書く</a></td>
+                            </tr>
+                        </table>
+                </div>
+                </c:forEach>
             </c:when>
         </c:choose>
-        <a href="<c:url value='/users/edit?id=${user.id}' />">ID、パスワードを変更する</a>
-        <br />
-        <a href="<c:url value='/dogs/new?id=${user.id}' />">愛犬を登録する</a>
+        <div class="link">
+            <a href="<c:url value='/users/edit?id=${user.id}' />">ID、パスワードを変更する</a>
+            <br />
+            <a href="<c:url value='/dogs/new?id=${user.id}' />">愛犬を登録する</a>
+        </div>
     </c:param>
 </c:import>
