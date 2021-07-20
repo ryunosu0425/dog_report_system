@@ -9,27 +9,37 @@
             </div>
         </c:if>
         <h2>愛犬　一覧</h2>
-        <table id="dog_list">
-            <tbody>
-                <tr>
-                   <th>名前</th>
-                   <th>犬種</th>
-                   <th>年齢</th>
-                   <th>性別</th>
-                   <th>登録日時</th>
-                </tr>
+        <c:choose>
+            <c:when test="${dogs != null}">
                 <c:forEach var="dog" items="${dogs}" varStatus="status">
-                    <tr class="row${status.count % 2}">
-                        <td><c:out value="${dog.dog_name}" /></td>
-                        <td><c:out value="${dog.dog_type}" /></td>
-                        <td><c:out value="${dog.age}" /></td>
-                        <td><c:out value="${dog.sex}" /></td>
-                        <td class="report_date"><fmt:formatDate
-                                value='${dog.created_at}' pattern='yyyy-MM-dd' /></td>
-                    </tr>
+                <div class="dog">
+                    <img class="dog_image"
+                        src="${pageContext.request.contextPath}/dogs/getImage?id=${dog.id}">
+                        <table class="dog_int">
+                            <tr>
+                                <th>名前 </th><td><c:out value="${dog.dog_name}" /></td>
+                            </tr>
+                            <tr>
+                                <th>犬種 </th><td><c:out value="${dog.dog_type}" /></td>
+                            </tr>
+                            <tr>
+                                <th>年齢 </th><td><c:out value="${dog.age}" /></td>
+                            </tr>
+                            <tr>
+                                <th>性別 </th><td><c:out value="${dog.sex}" /></td>
+                            </tr>
+                            <tr>
+                                <th>登録日時</th><td><fmt:formatDate
+                                            value='${dog.created_at}' pattern='yyyy-MM-dd' /></td>
+                            </tr>
+                            <tr>
+                                <td colspan = 2><a href="<c:url value='/reports/show?id=${dog.id}' />">日記を見る</a><br /></td>
+                            </tr>
+                        </table>
+                </div>
                 </c:forEach>
-            </tbody>
-        </table>
+            </c:when>
+        </c:choose>
 
         <div id="pagination">
             （全 ${dogs_count} 件）<br />

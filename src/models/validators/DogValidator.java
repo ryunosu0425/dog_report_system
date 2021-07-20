@@ -6,7 +6,7 @@ import java.util.List;
 import models.Dog;
 
 public class DogValidator {
-    public static List<String> validate(Dog d, Boolean codeDuplicateCheckFlag, Boolean passwordCheckFlag) {
+    public static List<String> validate(Dog d) {
         List<String> errors = new ArrayList<String>();
 
         String name_error = validateName(d.getDog_name());

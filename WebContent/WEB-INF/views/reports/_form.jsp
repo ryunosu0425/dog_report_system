@@ -27,9 +27,9 @@
 <br /><br />
 
 <label for="image">画像（２ファイル投稿出来ます）</label><br />
-<input type="file" id="image1" name="image" value="${reportImage.image}" accept="image/png, image/jpeg" onchange="func1()" />
+<input type="file" id="image1" name="image1" value="${report.image1}" accept="image/png, image/jpeg" onchange="func1()" />
 <br /><br />
-<input type="file" id="add1" name="image" value="${reportImage.image}" accept="image/png, image/jpeg" />
+<input type="file" id="image2" class="image2" name="image2" value="${report.image2}" accept="image/png, image/jpeg" />
 <br /><br />
 
 

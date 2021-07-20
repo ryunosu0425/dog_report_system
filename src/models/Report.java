@@ -41,7 +41,6 @@ public class Report {
     @JoinColumn(name = "dog_id", nullable = false)
     private  Dog dog;
 
-
     @Column(name = "report_date", nullable = false)
     private Date report_date;
 
@@ -57,6 +56,15 @@ public class Report {
 
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
+
+    @Lob
+    @Column(name = "image1", nullable = true)
+    private byte[] image1;
+
+    @Lob
+    @Column(name = "image2", nullable = true)
+    private byte[] image2;
+
 
     public Integer getId() {
         return id;
@@ -120,6 +128,22 @@ public class Report {
 
     public void setDog(Dog dog) {
         this.dog = dog;
+    }
+
+    public byte[] getImage1() {
+        return image1;
+    }
+
+    public void setImage1(byte[] image1) {
+        this.image1 = image1;
+    }
+
+    public byte[] getImage2() {
+        return image2;
+    }
+
+    public void setImage2(byte[] image2) {
+        this.image2 = image2;
     }
 
 }

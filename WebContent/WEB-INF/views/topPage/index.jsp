@@ -8,6 +8,6 @@
                 </div>
             </c:if>
 
-        <h2><img alt="dog-icon" src="../webImage/icon1.png">愛犬日記へようこそ<img alt="dog-icon2" src="/Applications/Eclipse_4.6.3.app/Contents/workspace/dog_report_system/WebContent/webImage/icon2.jpeg"></h2>
+        <h2><img class="icon" alt="dog-icon" src="/dog_report_system/webImage/icon1.png">  愛犬日記へようこそ  <img class="icon" alt="dog-icon2" src="/dog_report_system/webImage/icon2.jpeg"></h2>
     </c:param>
 </c:import>

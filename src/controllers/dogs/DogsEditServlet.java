@@ -39,6 +39,7 @@ public class DogsEditServlet extends HttpServlet {
 
         request.setAttribute("dog", d);
         request.setAttribute("_token", request.getSession().getId());
+        request.getSession().setAttribute("dog_id", d.getId());
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/dogs/edit.jsp");
         rd.forward(request, response);

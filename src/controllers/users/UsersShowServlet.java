@@ -43,6 +43,11 @@ public class UsersShowServlet extends HttpServlet {
 
         request.setAttribute("user", u);
         request.setAttribute("dogs", dogs);
+        if(request.getSession().getAttribute("flush") != null) {
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+        }
+
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/users/show.jsp");
         rd.forward(request, response);

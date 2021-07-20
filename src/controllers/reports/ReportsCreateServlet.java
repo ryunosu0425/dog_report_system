@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,6 @@ import javax.servlet.http.Part;
 
 import models.Dog;
 import models.Report;
-import models.ReportImage;
 import models.User;
 import models.validators.ReportValidator;
 import utils.DBUtil;
@@ -27,6 +27,8 @@ import utils.DBUtil;
  * Servlet implementation class ReportsCreateServlet
  */
 @WebServlet("/reports/create")
+@MultipartConfig(maxFileSize = 10485760)
+
 public class ReportsCreateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -44,7 +46,6 @@ public class ReportsCreateServlet extends HttpServlet {
         EntityManager em = DBUtil.createEntityManager();
 
         Report r = new Report();
-        ReportImage ri = new ReportImage();
 
         r.setUser((User)request.getSession().getAttribute("login_user"));
         r.setDog((Dog)request.getSession().getAttribute("dog"));
@@ -62,9 +63,8 @@ public class ReportsCreateServlet extends HttpServlet {
         r.setCreated_at(currentTime);
         r.setUpdated_at(currentTime);
 
-        ri.setReport(r);
+        Part part = request.getPart("image1");
 
-        Part part = request.getPart("image");
         int file_id = 0;
 
         InputStream inpStream = part.getInputStream();
@@ -77,8 +77,23 @@ public class ReportsCreateServlet extends HttpServlet {
 
         byte[] bytes = outStream.toByteArray();
 
-        ri.setImage(bytes);
+        r.setImage1(bytes);
 
+        Part part2 = request.getPart("image2");
+
+        int file_id2 = 0;
+
+        InputStream inpStream2 = part2.getInputStream();
+        ByteArrayOutputStream outStream2 = new ByteArrayOutputStream();
+
+        int b = 0;
+        while((b = inpStream2.read()) != -1) {
+            outStream2.write(b);
+        }
+
+        byte[] bytes2 = outStream2.toByteArray();
+
+        r.setImage2(bytes2);
 
         List<String> errors = ReportValidator.validate(r);
         if(errors.size() > 0) {
@@ -86,7 +101,6 @@ public class ReportsCreateServlet extends HttpServlet {
 
             request.setAttribute("_token", request.getSession().getId());
             request.setAttribute("report", r);
-            request.setAttribute("reportImage", ri);
             request.setAttribute("errors", errors);
 
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/reports/new.jsp");
@@ -94,13 +108,17 @@ public class ReportsCreateServlet extends HttpServlet {
         } else {
             em.getTransaction().begin();
             em.persist(r);
-            em.persist(ri);
             em.getTransaction().commit();
+
+            file_id = r.getId();
+            file_id2 = r.getId();
+
             em.close();
             request.getSession().setAttribute("flush", "登録が完了しました。");
 
             request.getSession().removeAttribute("dog");
             request.getSession().setAttribute("file_id", file_id);
+            request.getSession().setAttribute("file_id2", file_id2);
             response.sendRedirect(request.getContextPath() + "/reports/index");
         }
 

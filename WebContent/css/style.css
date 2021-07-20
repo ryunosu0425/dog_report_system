@@ -129,7 +129,7 @@ h1 a {
     padding-bottom: 28px;
     margin-bottom: 15px;
     color: #155724;
-    background-color: #d4edda;
+    background-color: rgba(212, 237, 218, 0.8) ;
 }
 
 #flush_error {
@@ -139,7 +139,7 @@ h1 a {
     padding-bottom: 28px;
     margin-bottom: 15px;
     color: #721c24;
-    background-color: #f8d7da;
+    background-color: rgba(248, 215, 218, 0.8);
 }
 
 table#report_list th {
@@ -190,4 +190,13 @@ h3 {
 
 .dog {
     padding-top:50px;
+}
+
+.image2 {
+    display:none;
+}
+
+.icon {
+    height: 60px;
+    width: 60px;
 }
